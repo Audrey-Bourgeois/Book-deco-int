@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB Décoration d'Intérieur - Audrey Bourgeois</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1A1A;
+            --accent: #D4AF37; /* Gold */
+            --accent-light: #F4E8C1;
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #EAEAEA;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: 2px solid var(--accent);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text span:first-child {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .logo-text span:last-child {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-contact {
+            background: var(--primary);
+            color: var(--accent) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .btn-contact:hover {
+            background: var(--accent);
+            color: var(--primary) !important;
+        }
+        .btn-contact::after { display: none !important; }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 10rem 2rem 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .badge-item strong {
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        .badge-item span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .floating-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* SOMMAIRE TICKER / BAR */
+        .sommaire-bar {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .sommaire-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+
+        .sommaire-item {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+            padding-left: 1rem;
+        }
+
+        .sommaire-item:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .sommaire-item .num {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .sommaire-item .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTION STYLING GENERAL */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header span {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        /* NOTRE STYLE */
+        .style-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .style-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .style-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .style-img-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 8px solid white;
+            background: white;
+        }
+
+        .style-img-box img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        /* SATISFACTION / STATS */
+        .satisfaction-section {
+            background: #FDFBF7;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            margin: 4rem auto;
+            padding: 5rem 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card h3 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* NOTRE TRAVAIL / GALLERY */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .work-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .work-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .work-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2.5rem 2rem 2rem 2rem;
+            color: white;
+        }
+
+        .work-overlay h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .work-overlay p {
+            font-size: 0.9rem;
+            color: var(--accent-light);
+        }
+
+        /* METHODE / PROCESS */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .method-step {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .method-step:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .method-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-light);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .method-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .method-step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* EQUIPE */
+        .team-container {
+            background: white;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        .team-img {
+            height: 450px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .team-info h3 {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-info .role {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* CONTACT FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 5rem 2rem 3rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #CCCCCC;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #888888;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .hero, .style-grid, .team-container, .sommaire-container, .stats-grid, .method-grid, .work-grid {
+                grid-template-columns: 1fr;
+            }
+            nav ul { display: none; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-circle">AB</div>
+                <div class="logo-text">
+                    <span>AUDREY BOURGEOIS</span>
+                    <span>Décoratrice d'intérieur</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#style">Notre style</a></li>
+                    <li><a href="#satisfaction">Satisfaction</a></li>
+                    <li><a href="#travail">Notre travail</a></li>
+                    <li><a href="#methode">Méthode</a></li>
+                    <li><a href="#equipe">Équipe</a></li>
+                    <li><a href="#contact" class="btn-contact">Contactez-moi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Réalisez votre aménagement <span>avec votre décoratrice</span></h1>
+                <p>Sublimez vos espaces de vie grâce à une approche sur-mesure, élégante et fonctionnelle qui révèle votre personnalité.</p>
+                <div class="hero-badges">
+                    <div class="badge-item">
+                        <strong>100%</strong>
+                        <span>Sur-mesure</span>
+                    </div>
+                    <div class="badge-item">
+                        <strong>Pro</strong>
+                        <span>Harmonie & Design</span>
+                    </div>
+                </div>
+                <a href="#methode" class="btn-contact" style="display:inline-block; text-align:center; text-decoration:none;">Découvrir la méthode</a>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="cuisine.jpg" alt="Cuisine Aménagée" class="hero-image-main">
+                <div class="floating-card">
+                    <img src="salon.jpg" alt="Détails déco">
+                    <div>
+                        <h4 style="font-size:0.95rem; font-family:'Playfair Display',serif;">Ambiance Cosy</h4>
+                        <span style="font-size:0.75rem; color:var(--text-muted);">Inspiration & Tendance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOMMAIRE -->
+        <div class="sommaire-bar">
+            <div class="sommaire-container">
+                <a href="#style" class="sommaire-item">
+                    <span class="num">01</span>
+                    <span class="label">Notre style</span>
+                </a>
+                <a href="#satisfaction" class="sommaire-item">
+                    <span class="num">02</span>
+                    <span class="label">Satisfaction</span>
+                </a>
+                <a href="#travail" class="sommaire-item">
+                    <span class="num">03</span>
+                    <span class="label">Notre meilleur travail</span>
+                </a>
+                <a href="#methode" class="sommaire-item">
+                    <span class="num">04</span>
+                    <span class="label">Notre méthode</span>
+                </a>
+                <a href="#equipe" class="sommaire-item">
+                    <span class="num">05</span>
+                    <span class="label">Rencontrez l'équipe</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- NOTRE STYLE -->
+        <section id="style">
+            <div class="section-header">
+                <span>01 . Identité visuelle</span>
+                <h2>Notre Style</h2>
+            </div>
+            <div class="style-grid">
+                <div class="style-content">
+                    <p>Nous concevons des intérieurs chaleureux, structurés et conviviaux, où chaque moment de la journée (petit-déjeuner, déjeuner ou thé de l'après-midi) trouve son écrin parfait.</p>
+                    <p>Alliant esthétique contemporaine et matières nobles, nous jouons avec la lumière, le bois et les lignes épurées pour créer des espaces fluides.</p>
+                    <div class="style-tags">
+                        <span class="tag">Breakfast</span>
+                        <span class="tag">Lunch</span>
+                        <span class="tag">Afternoon Tea</span>
+                        <span class="tag">Coffee & Soft</span>
+                        <span class="tag">Design Kitchen</span>
+                    </div>
+                </div>
+                <div class="style-img-box">
+                    <img src="salon nuit.jpg" alt="Intérieur stylisé">
+                </div>
+            </div>
+        </section>
+
+        <!-- SATISFACTION -->
+        <section id="satisfaction" class="satisfaction-section">
+            <div class="section-header">
+                <span>02 . Indicateurs de confiance</span>
+                <h2>Évaluation de la Satisfaction</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>98%</h3>
+                    <p>Clients satisfaits</p>
+                </div>
+                <div class="stat-card">
+                    <h3>50+</h3>
+                    <p>Projets réalisés</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Sur-mesure</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTRE TRAVAIL -->
+        <section id="travail">
+            <div class="section-header">
+                <span>03 . Réalisations</span>
+                <h2>Notre Meilleur Travail</h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <img src="cuisine bar.jpg" alt="Cuisine moderne">
+                    <div class="work-overlay">
+                        <h4>Espace Cuisine & Bar</h4>
+                        <p>Optimisation d'espace & Ilot central</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="salon.jpg"Salon chaleureux">
+                    <div class="work-overlay">
+                        <h4>Salon Harmonie</h4>
+                        <p>Tableau d'humeur & Textures</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- METHODE -->
+        <section id="methode">
+            <div class="section-header">
+                <span>04 . Notre Processus</span>
+                <h2>Notre Méthode</h2>
+            </div>
+            <div class="method-grid">
+                <div class="method-step">
+                    <span class="method-num">01</span>
+                    <h3>Prenez rendez-vous</h3>
+                    <p>Tout commence par un échange privilégié. Lors de cette première rencontre (physique ou en ligne), nous prenons le temps d'écouter vos envies, de cerner votre mode de vie et d'analyser vos espaces.</p>
+                </div>
+                <div class="method-step">
+                    <span class="method-num">02</span>
+                    <h3>Tableau d'humeur & Plans</h3>
+                    <p>Nous traduisons vos aspirations en concepts visuels concrets à travers un moodboard exclusif et des plans d'aménagement repensés pour optimiser chaque recoin.</p>
+                </div>
+                <div class="method-step">
+                    <span class="method-num">03</span>
+                    <h3>La révélation avant / après</h3>
+                    <p>Le moment magique de la métamorphose. Découvrez la concrétisation de notre vision à travers un comparatif saisissant entre l'avant et l'après de votre intérieur.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EQUIPE -->
+        <section id="equipe">
+            <div class="section-header">
+                <span>05 . L'experte</span>
+                <h2>Rencontrez Notre Équipe</h2>
+            </div>
+            <div class="team-container">
+                <img src="audrey.jpg" alt="Audrey Bourgeois" class="team-img">
+                <div class="team-info">
+                    <h3>Audrey BOURGEOIS</h3>
+                    <span class="role">Décoratrice d'intérieur</span>
+                    <p>Passionnée par l'agencement des espaces et l'harmonie des matières, je vous accompagne pas à pas pour transformer votre lieu de vie en un cocon unique qui vous ressemble.</p>
+                    <a href="#contact" class="btn-contact" style="display:inline-block; width: fit-content; text-decoration:none; text-align:center;">Discuter de votre projet</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo-circle" style="margin-bottom:1rem;">AB</div>
+                <h4 style="margin-bottom:0.5rem;">AB Décoration d'Intérieur</h4>
+                <p>Réalisez l'aménagement de vos rêves avec votre décoratrice d'intérieur.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contactez-moi</h4>
+                <p>02 rue des Grenelles - 75004 PARIS</p>
+                <p>01 64 44 53 10</p>
+                <p><a href="mailto:ledigital75@gmail.com">ledigital75@gmail.com</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Horaires & Infos</h4>
+                <p>Lundi au Vendredi : 9h00 - 19h00</p>
+                <p>Samedi : Sur rendez-vous</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 AB Décoration d'Intérieur. Tous droits réservés.</span>
+            <span>Design web sur-mesure</span>
+        </div>
+    </footer>
+
+</body>
+</html>
