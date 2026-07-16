@@ -98,6 +98,27 @@
             color: var(--accent);
         }
 
+        /* Bouton Menu Burger (Caché sur PC) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1010;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
         /* HERO SECTION */
         .hero {
             height: 90vh;
@@ -236,7 +257,6 @@
             display: block;
         }
 
-        /* Gestion des flèches : invisibles par défaut, apparaissent au survol du carrousel */
         .carousel-btn {
             position: absolute;
             background: rgba(0,0,0,0.6);
@@ -246,12 +266,12 @@
             cursor: pointer;
             font-size: 1.2rem;
             z-index: 10;
-            opacity: 0; /* Cachées de base */
+            opacity: 0;
             transition: opacity 0.3s ease, background 0.3s ease;
         }
 
         .carousel-container:hover .carousel-btn {
-            opacity: 1; /* Apparaissent quand la souris survole le carrousel */
+            opacity: 1;
         }
 
         .carousel-btn:hover {
@@ -343,16 +363,39 @@
             font-size: 0.9rem;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE & MENU MOBILE */
         @media(max-width: 768px) {
             header { padding: 15px 20px; }
-            nav { display: none; }
+            .menu-toggle { display: flex; }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 20px 0;
+            }
+
             .hero h1 { font-size: 2.5rem; }
             section { padding: 60px 20px; }
             .team-content { flex-direction: column; text-align: center; }
             .carousel-container { max-width: 100%; }
             .carousel-slides { height: 450px; }
-            /* Sur mobile, on peut laisser les flèches légèrement visibles ou au survol */
             .carousel-btn { opacity: 0.8; } 
         }
     </style>
@@ -367,12 +410,20 @@
                 <span>DÉCORATION</span>
             </a>
         </div>
-        <nav>
+        
+        <!-- Bouton Burger Mobile -->
+        <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="nav-menu">
             <ul>
-                <li><a href="#style">Notre Style</a></li>
-                <li><a href="#travail">Nos Réalisations</a></li>
-                <li><a href="#methode">Notre Méthode</a></li>
-                <li><a href="#equipe">Équipe & Contact</a></li>
+                <li><a href="#style" class="nav-link">Notre Style</a></li>
+                <li><a href="#travail" class="nav-link">Nos Réalisations</a></li>
+                <li><a href="#methode" class="nav-link">Notre Méthode</a></li>
+                <li><a href="#equipe" class="nav-link">Équipe & Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -421,8 +472,8 @@
         <!-- Carrousel Salon -->
         <div id="salon" class="carousel-container active">
             <div class="carousel-slides" id="slider-salon">
-                <div class="slide"><img src="salon 2.jpg" alt="Salon Vue 1"></div>
-                <div class="slide"><img src="salon nuit.jpg" alt="Salon Vue 2"></div>
+                <div class="slide"><img src="salon 2.JPG" alt="Salon Vue 1"></div>
+                <div class="slide"><img src="salon nuit.JPG" alt="Salon Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('salon', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('salon', 1)">&#10093;</button>
@@ -431,8 +482,8 @@
         <!-- Carrousel Balcon -->
         <div id="balcon" class="carousel-container">
             <div class="carousel-slides" id="slider-balcon">
-                <div class="slide"><img src="balcon 1.jpg" alt="Balcon Vue 1"></div>
-                <div class="slide"><img src="balcon 2.jpg" alt="Balcon Vue 2"></div>
+                <div class="slide"><img src="balcon 1.JPG" alt="Balcon Vue 1"></div>
+                <div class="slide"><img src="balcon 2.JPG" alt="Balcon Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('balcon', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('balcon', 1)">&#10093;</button>
@@ -441,8 +492,8 @@
         <!-- Carrousel Cuisine -->
         <div id="cuisine" class="carousel-container">
             <div class="carousel-slides" id="slider-cuisine">
-                <div class="slide"><img src="cuisine 2.jpg" alt="Cuisine Vue 1"></div>
-                <div class="slide"><img src="cuisine 3.jpg" alt="Cuisine Vue 2"></div>
+                <div class="slide"><img src="cuisine 2.JPG" alt="Cuisine Vue 1"></div>
+                <div class="slide"><img src="cuisine 3.JPG" alt="Cuisine Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('cuisine', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('cuisine', 1)">&#10093;</button>
@@ -451,8 +502,8 @@
         <!-- Carrousel Entree -->
         <div id="entree" class="carousel-container">
             <div class="carousel-slides" id="slider-entree">
-                <div class="slide"><img src="entree 1.jpg" alt="Entree Vue 1"></div>
-                <div class="slide"><img src="entree 2.jpg" alt="Entree Vue 2"></div>
+                <div class="slide"><img src="entree 1.JPG" alt="Entree Vue 1"></div>
+                <div class="slide"><img src="entree 2.JPG" alt="Entree Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('entree', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('entree', 1)">&#10093;</button>
@@ -461,8 +512,8 @@
         <!-- Carrousel Salle de Bain -->
         <div id="salle-de-bain" class="carousel-container">
             <div class="carousel-slides" id="slider-salle-de-bain">
-                <div class="slide"><img src="salle de bain 1.jpg" alt="Salle de Bain Vue 1"></div>
-                <div class="slide"><img src="salle de bain 2.jpg" alt="Salle de Bain Vue 2"></div>
+                <div class="slide"><img src="salle de bain 1.JPG" alt="Salle de Bain Vue 1"></div>
+                <div class="slide"><img src="salle de bain 2.JPG" alt="Salle de Bain Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('salle-de-bain', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('salle-de-bain', 1)">&#10093;</button>
@@ -471,7 +522,7 @@
         <!-- Carrousel Chambre -->
         <div id="chambre" class="carousel-container">
             <div class="carousel-slides" id="slider-chambre">
-                <div class="slide"><img src="chambre 1.jpg" alt="Chambre Vue 1"></div>
+                <div class="slide"><img src="chambre 1.JPG" alt="Chambre Vue 1"></div>
                 <div class="slide"><img src="chambre 2.JPG" alt="Chambre Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('chambre', -1)">&#10092;</button>
@@ -481,8 +532,8 @@
         <!-- Carrousel Couloir -->
         <div id="couloir" class="carousel-container">
             <div class="carousel-slides" id="slider-couloir">
-                <div class="slide"><img src="couloir 1.jpg" alt="Couloir Vue 1"></div>
-                <div class="slide"><img src="couloir 2.jpg" alt="Couloir Vue 2"></div>
+                <div class="slide"><img src="couloir 1.JPG" alt="Couloir Vue 1"></div>
+                <div class="slide"><img src="couloir 2.JPG" alt="Couloir Vue 2"></div>
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('couloir', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('couloir', 1)">&#10093;</button>
@@ -516,7 +567,7 @@
         <h2 class="section-title">Rencontrez Notre Équipe</h2>
         <div class="team-content">
             <div class="team-img">
-                <img src="audrey.jpg" alt="Audrey Bourgeois">
+                <img src="audrey.JPG" alt="Audrey Bourgeois">
             </div>
             <div class="team-info">
                 <h3>Audrey BOURGEOIS</h3>
@@ -536,8 +587,25 @@
         <p>&copy; 2026 AB Décoration - Tous droits réservés.</p>
     </footer>
 
-    <!-- SCRIPT JAVASCRIPT DU CARROUSEL PORTRAIT -->
+    <!-- SCRIPTS JAVASCRIPT -->
     <script>
+        /* Gestion du menu burger mobile */
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Ferme automatiquement le menu lorsqu'on clique sur un lien de navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        /* Gestion des carrousel portraits */
         function openRoom(evt, roomName) {
             const containers = document.querySelectorAll('.carousel-container');
             containers.forEach(container => container.classList.remove('active'));
