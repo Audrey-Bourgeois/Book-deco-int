@@ -467,6 +467,7 @@
             <button class="tab-btn" onclick="openRoom(event, 'salle-de-bain')">Salle de Bain</button>
             <button class="tab-btn" onclick="openRoom(event, 'chambre')">Chambre</button>
             <button class="tab-btn" onclick="openRoom(event, 'couloir')">Couloir</button>
+            <button class="tab-btn" onclick="openRoom(event, 'rez-de-jardin')">Rez de Jardin</button>
         </div>
 
         <!-- Carrousel Salon -->
@@ -537,6 +538,16 @@
             </div>
             <button class="carousel-btn prev" onclick="moveSlide('couloir', -1)">&#10092;</button>
             <button class="carousel-btn next" onclick="moveSlide('couloir', 1)">&#10093;</button>
+        </div>
+
+        <!-- Carrousel Rez de Jardin -->
+        <div id="rez-de-jardin" class="carousel-container">
+            <div class="carousel-slides" id="slider-rez-de-jardin">
+                <div class="slide"><img src="rez de jardin 1.JPG" alt="Rez de Jardin Vue 1"></div>
+                <div class="slide"><img src="rez de jardin 3.JPG" alt="Rez de Jardin Vue 2"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveSlide('rez-de-jardin', -1)">&#10092;</button>
+            <button class="carousel-btn next" onclick="moveSlide('rez-de-jardin', 1)">&#10093;</button>
         </div>
     </section>
 
@@ -627,7 +638,8 @@
             'entree': 0, 
             'salle-de-bain': 0, 
             'chambre': 0, 
-            'couloir': 0 
+            'couloir': 0,
+            'rez-de-jardin': 0 
         };
 
         function moveSlide(room, direction) {
